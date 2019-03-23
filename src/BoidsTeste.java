@@ -18,7 +18,7 @@ public class BoidsTeste extends JPanel {
         h = 600;
  
         setPreferredSize(new Dimension(w, h));
-        setBackground(Color.white);
+        setBackground(Color.black);
  
         spawnFlock();
  
@@ -229,9 +229,9 @@ class Boid {
  
         g.translate(location.x, location.y);
         g.rotate(velocity.heading() + PI / 2);
-        g.setColor(Color.white);
-        g.fill(SHAPE);
         g.setColor(Color.black);
+        g.fill(SHAPE);
+        g.setColor(Color.white);
         g.draw(SHAPE);
  
         g.setTransform(save);
