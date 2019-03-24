@@ -113,6 +113,14 @@ public class Rebanho {
         g.drawString("Centróide: " + centroide, 15, 75);
         g.drawString("Rebanho: " + boids.size(), 15, 100);
         g.drawString(String.format("Velocidade do Líder: %.2f", lider.velocidade.modulo()), 15, 125);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        g.drawString("Teclas:", 15, screenSize.height - 175);
+        g.drawString("Setas  -  mover líder", 30, screenSize.height - 150);
+        g.drawString("V  -  câmera", 30, screenSize.height - 125);
+        g.drawString("R  -  rastro do rebanho", 30, screenSize.height - 100);
+        g.drawString("S  -  parar líder", 30, screenSize.height - 75);
+        g.drawString("+  -  adiciona 10 boids", 30, screenSize.height - 50);
+        g.drawString("\"-\"  -  retira 10 boids", 30, screenSize.height - 25);
     }
 
     private void drawRastro(Graphics2D g, Vetor ancora) {
