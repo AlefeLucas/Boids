@@ -14,7 +14,7 @@ public class BoidLider extends Boid {
         super(x, y);
         velocidade = new Vetor(2, 0);
         localizaçao = new Vetor(x, y);
-        velocidadeMaxima = 4.5;
+        velocidadeMaxima = 5.5;
         forçaMaxima = 0.1;
     }
 

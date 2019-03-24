@@ -14,17 +14,22 @@ import javax.swing.Timer;
 
 public class BoidsTeste extends JPanel {
 
+    private static Color BACKGROUND_COLOR = Color.black;
     Rebanho rebanho;
     final int w, h;
     Camera camera;
+    JFrame f;
 
-    public BoidsTeste() {
-        w = 1155;
-        h = 650;
+    public BoidsTeste(JFrame f) {
+
+        this.f = f;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        w = screenSize.width;
+        h = screenSize.height;
 
         camera = Camera.CENTRO;
         setPreferredSize(new Dimension(w, h));
-        setBackground(Color.black);
+        setBackground(BACKGROUND_COLOR);
 
         spawnRebanho();
 
@@ -37,8 +42,10 @@ public class BoidsTeste extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    f.dispose();
+                    System.exit(0);
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     rebanho.getLider().esquerda = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     rebanho.getLider().direita = true;
@@ -47,25 +54,30 @@ public class BoidsTeste extends JPanel {
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     rebanho.getLider().baixo = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_ADD) {
-                    System.out.println("+");
                     rebanho.add10(w * 0.5, h * 0.5);
                 } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
                     rebanho.remove10();
-                    System.out.println("-");
+                } else if (e.getKeyCode() == KeyEvent.VK_B) {
+                    if(BACKGROUND_COLOR == Color.black){
+                        BACKGROUND_COLOR = Color.white;
+                    } else {
+                        BACKGROUND_COLOR = Color.black;
+                    }
+                    setBackground(BACKGROUND_COLOR);
                 } else if (e.getKeyCode() == KeyEvent.VK_V) {
 
                     switch (camera) {
                         case REBANHO:
                             camera = Camera.LIDER;
-                            System.out.println("LIDER");
                             break;
                         case LIDER:
                             camera = Camera.CENTRO;
-                            System.out.println("CENTRO");
                             break;
                         case CENTRO:
+                            camera = Camera.MEIO_REBANHO_LIDER;
+                            break;
+                        case MEIO_REBANHO_LIDER:
                             camera = Camera.REBANHO;
-                            System.out.println("REBANHO");
                             break;
                     }
                 }
@@ -87,7 +99,7 @@ public class BoidsTeste extends JPanel {
     }
 
     private void spawnRebanho() {
-        rebanho = Rebanho.spawn(w * 0.5, h * 0.5, 20);
+        rebanho = Rebanho.spawn(w * 0.5, h * 0.5, 59);
     }
 
     //roda a cada frame, responsavel por desenhar
@@ -98,6 +110,7 @@ public class BoidsTeste extends JPanel {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
+        g.setBackground(getBackground());
         rebanho.run(g, w, h, camera);
 
     }
@@ -105,13 +118,22 @@ public class BoidsTeste extends JPanel {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame f = new JFrame();
+            f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            f.setUndecorated(true);
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setTitle("Boids");
             f.setResizable(true);
-            f.add(new BoidsTeste(), BorderLayout.CENTER);
+            f.add(new BoidsTeste(f), BorderLayout.CENTER);
             f.pack();
             f.setLocationRelativeTo(null);
+
             f.setVisible(true);
+
         });
+    }
+
+    public static Color getContrastColor(Color color) {
+        double y = (299 * color.getRed() + 587 * color.getGreen() + 114 * color.getBlue()) / 1000;
+        return y >= 128 ? Color.black : Color.white;
     }
 }

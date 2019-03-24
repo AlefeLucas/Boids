@@ -221,9 +221,9 @@ public class Boid {
 
         g.translate(localizaçao.x - ancora.x, localizaçao.y - ancora.y);
         g.rotate(velocidade.direçao() + PI / 2);
-        g.setColor(Color.black);
+        g.setColor(Color.red);
         g.fill(FORMA_DO_BOID);
-        g.setColor(Color.white);
+        g.setColor(Color.red);
         g.draw(FORMA_DO_BOID);
 
         g.setTransform(save);

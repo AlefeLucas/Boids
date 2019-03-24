@@ -1,7 +1,9 @@
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +33,7 @@ public class Rebanho {
             if (!(boids.get(index) instanceof BoidLider)) {
                 boids.remove(index);
                 remove--;
-            } 
+            }
             index = r.nextInt(boids.size());
         }
     }
@@ -51,28 +53,39 @@ public class Rebanho {
 
                 break;
             case REBANHO:
-                
+
                 ancora = new Vetor(centroide.x - (w / 2), centroide.y - (h / 2));
+                break;
+            case MEIO_REBANHO_LIDER:
+                ancora = new Vetor(lider.localizaçao.x - (w / 2), lider.localizaçao.y - (h / 2));
+                Vetor a = new Vetor(centroide.x - (w / 2), centroide.y - (h / 2));
+                ancora.somar(a);
+                ancora.dividir(2);
                 break;
             case CENTRO:
             default:
-                ancora = new Vetor(0, 0);
+                double x = 0,
+                 y = 0;
+
+                ancora = new Vetor(x, y);
 
         }
-        
+
         for (Boid b : boids) {
             b.run(g, boids, w, h, ancora);
         }
-        
-        g.setColor(Color.white);
+
+        g.setColor(BoidsTeste.getContrastColor(g.getBackground()));
         g.setFont(Font.decode("Arial-BOLD-15"));
-        g.drawString("Câmera: " + camera.toString().toLowerCase(), 15, 25);
+        g.drawString("Câmera: " + camera.toString().toLowerCase().replaceAll("_", " "), 15, 25);
         g.drawString("Líder: " + lider.localizaçao, 15, 50);
         g.drawString("Centróide: " + centroide, 15, 75);
         g.drawString("Rebanho: " + boids.size(), 15, 100);
         g.drawString(String.format("Velocidade do Líder: %.2f", lider.velocidade.modulo()), 15, 125);
 
     }
+
+   
 
     private Vetor calculaCentroide() {
         Vetor centroide = new Vetor(lider.localizaçao.x, lider.localizaçao.y);
