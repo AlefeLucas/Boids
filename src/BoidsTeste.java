@@ -51,10 +51,13 @@ public class BoidsTeste extends JPanel {
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     BoidLider lider = rebanho.getLider();
                     lider.aceleraçao.somar(new Vetor(0, força));
-                } else if (e.getKeyCode() == KeyEvent.VK_PLUS) {
+                } else if (e.getKeyCode() == KeyEvent.VK_ADD) {
+                    System.out.println("+");
+                    rebanho.add10(w * 0.5, h * 0.5);
                     
-                } else if (e.getKeyCode() == KeyEvent.VK_MINUS) {
-                    
+                } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
+                    rebanho.remove10();
+                    System.out.println("-");
                 }
             }
 

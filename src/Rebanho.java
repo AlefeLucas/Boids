@@ -22,18 +22,30 @@ public class Rebanho {
         return lider;
     }
     
-    public void add10(){
-        spawn(0, 0, 10);
+    public void add10(double w, double h){
+       for (int i = 0; i < 10; i++) {
+            Boid boid = new Boid(w, h);
+            boid.setLider(this.getLider());
+            this.addBoid(boid);
+        }  
     }
     
     public void remove10(){
-        
+        int remove = (10 < (boids.size() - 1) ? 10 : boids.size() - 1);
+        int index = 0;
+        while(remove > 0){
+            if(!(boids.get(index) instanceof BoidLider)){
+                boids.remove(index);
+                remove--;
+            } else {
+                index++;
+            }
+        }
     }
 
-    Rebanho() {
+    Rebanho(double w, double h) {
         boids = new ArrayList<>();
-        this.setLider(new BoidLider(0, 0));
-        
+        this.setLider(new BoidLider(w, h));
     }
 
     void run(Graphics2D g, int w, int h) {
@@ -57,7 +69,7 @@ public class Rebanho {
     }
 
     static Rebanho spawn(double w, double h, int numBoids) {
-        Rebanho rebanho = new Rebanho();
+        Rebanho rebanho = new Rebanho(w, h);
        
         for (int i = 0; i < numBoids; i++) {
             Boid boid = new Boid(w, h);
