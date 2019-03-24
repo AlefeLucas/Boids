@@ -13,13 +13,17 @@ public class Boid {
     static final Vetor DIREÇAO_MIGRAÇAO = new Vetor(0.00, 0.00);
     static final int TAMANHO = 6;
     static final Path2D FORMA_DO_BOID = new Path2D.Double();
-    
 
     //Define o formato do Boid
     static {
+
         FORMA_DO_BOID.moveTo(0, -TAMANHO * 2);
-        FORMA_DO_BOID.lineTo(-TAMANHO, TAMANHO * (3 / 2));
-        FORMA_DO_BOID.lineTo(TAMANHO, TAMANHO * (3 / 2));
+        FORMA_DO_BOID.lineTo(-TAMANHO, TAMANHO * (3f / 2));
+        FORMA_DO_BOID.lineTo(-TAMANHO * (2f / 3), TAMANHO * (3f / 2) * (2f / 3));
+        FORMA_DO_BOID.lineTo(TAMANHO * (2f / 3), TAMANHO * (3f / 2) * (2f / 3));
+        FORMA_DO_BOID.lineTo(TAMANHO, TAMANHO * (3f / 2));
+        FORMA_DO_BOID.closePath();
+
         FORMA_DO_BOID.closePath();
     }
 
@@ -32,24 +36,20 @@ public class Boid {
 
     Boid(double x, double y) {
         aceleraçao = new Vetor();
-        velocidade = new Vetor(RANDOM.nextDouble() * 3 - 1.5, RANDOM.nextDouble() * 3 - 1.5);
+        velocidade = new Vetor(RANDOM.nextDouble() * 10 - 5, RANDOM.nextDouble() * 10 - 5);
         localizaçao = new Vetor(x, y);
-        velocidadeMaxima = 3.0;
+        velocidadeMaxima = 5.0;
         forçaMaxima = 0.05;
     }
 
     public void setLider(BoidLider lider) {
         this.lider = lider;
     }
-    
-    
-    
-    
 
     void update() {
         velocidade.somar(aceleraçao);
         velocidade.limitar(velocidadeMaxima);
-        localizaçao.somar(velocidade); 
+        localizaçao.somar(velocidade);
         aceleraçao.multiplicar(0); //reseta aceleração, é calculada no rebanho()
     }
 
@@ -76,21 +76,27 @@ public class Boid {
         Vetor rule1 = separacao(boids); //para que eles não andem um em cima do outro
         Vetor rule2 = alignment(boids);
         Vetor rule3 = cohesion(boids);
-
+        Vetor rule4 = seguirLider();
         //pesos
         rule1.multiplicar(2.5);
         rule2.multiplicar(1.5);
         rule3.multiplicar(1.3);
+        rule4.multiplicar(1.0);
 
         aplicarForça(rule1);
         aplicarForça(rule2);
         aplicarForça(rule3);
+
+        aplicarForça(rule4);
+
+    }
+
+    private Vetor seguirLider() {
         Vetor v = new Vetor(0, 0);
         v.somar(lider.localizaçao);
         v.subtrair(this.localizaçao);
-        v.dividir(Vetor.dist(this.localizaçao, lider.localizaçao) * 15);
-        aplicarForça(v);
-
+        v.dividir(1 / (Vetor.dist(this.localizaçao, lider.localizaçao) * 0.000001));
+        return v;
     }
 
     //aparentemente, lista quais outros boids este boid está enxergando
@@ -122,7 +128,7 @@ public class Boid {
 
     //para que eles não andem um em cima do outro
     Vetor separacao(List<Boid> boids) {
-        double desiredSeparation = 20; //quando maior, mais distantes uns dos outros
+        double desiredSeparation = TAMANHO * (20 / 3); //quando maior, mais distantes uns dos outros
 
         Vetor rumo = new Vetor(0, 0); //vai armazenar a resultante para q este boid se afaste dos demais
         int count = 0;
@@ -157,7 +163,7 @@ public class Boid {
 
     //nao compreendi exatamente
     Vetor alignment(List<Boid> boids) {
-        double preferredDist = 50;
+        double preferredDist = TAMANHO * (50 / 3);
 
         Vetor rumo = new Vetor(0, 0);
         int count = 0;
@@ -186,7 +192,7 @@ public class Boid {
 
     //nao compreendi exatamente
     Vetor cohesion(List<Boid> boids) {
-        double preferredDist = 50;
+        double preferredDist = TAMANHO * (50 / 3);
 
         Vetor alvo = new Vetor(0, 0);
         int count = 0;

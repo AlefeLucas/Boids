@@ -79,7 +79,7 @@ public class Vetor {
 
     @Override
     public String toString() {
-        return String.format("(%.3f, %.3f)", x, y);
+        return String.format("(%.2f, %.2f)", x, y);
     }
     
     

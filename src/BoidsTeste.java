@@ -21,7 +21,7 @@ public class BoidsTeste extends JPanel {
     public BoidsTeste() {
         w = 1155;
         h = 650;
-        
+
         camera = Camera.CENTRO;
         setPreferredSize(new Dimension(w, h));
         setBackground(Color.black);
@@ -37,28 +37,24 @@ public class BoidsTeste extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                double força = 0.5;
+
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    BoidLider lider = rebanho.getLider();
-                    lider.aceleraçao.somar(new Vetor(-força, 0));
+                    rebanho.getLider().esquerda = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    BoidLider lider = rebanho.getLider();
-                    lider.aceleraçao.somar(new Vetor(força, 0));
+                    rebanho.getLider().direita = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    BoidLider lider = rebanho.getLider();
-                    lider.aceleraçao.somar(new Vetor(0, -força));
+                    rebanho.getLider().cima = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    BoidLider lider = rebanho.getLider();
-                    lider.aceleraçao.somar(new Vetor(0, força));
+                    rebanho.getLider().baixo = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_ADD) {
                     System.out.println("+");
                     rebanho.add10(w * 0.5, h * 0.5);
                 } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
                     rebanho.remove10();
                     System.out.println("-");
-                } else if (e.getKeyCode() == KeyEvent.VK_V){                   
-                    
-                    switch(camera){
+                } else if (e.getKeyCode() == KeyEvent.VK_V) {
+
+                    switch (camera) {
                         case REBANHO:
                             camera = Camera.LIDER;
                             System.out.println("LIDER");
@@ -77,7 +73,15 @@ public class BoidsTeste extends JPanel {
 
             @Override
             public void keyReleased(KeyEvent e) {
-
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    rebanho.getLider().esquerda = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    rebanho.getLider().direita = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    rebanho.getLider().cima = false;
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    rebanho.getLider().baixo = false;
+                }
             }
         });
     }
@@ -93,8 +97,9 @@ public class BoidsTeste extends JPanel {
         Graphics2D g = (Graphics2D) gg;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        
+
         rebanho.run(g, w, h, camera);
+
     }
 
     public static void main(String[] args) {
@@ -102,7 +107,7 @@ public class BoidsTeste extends JPanel {
             JFrame f = new JFrame();
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setTitle("Boids");
-            f.setResizable(false);
+            f.setResizable(true);
             f.add(new BoidsTeste(), BorderLayout.CENTER);
             f.pack();
             f.setLocationRelativeTo(null);
