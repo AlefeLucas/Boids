@@ -10,6 +10,7 @@ import java.util.Random;
 
 public class Rebanho {
 
+    private static final int MAXIMO_DE_BOIDS = 200; //CUIDADO, se por muito seu CPU frita.
     private List<Boid> boids;
     private BoidLider lider;
 
@@ -18,7 +19,7 @@ public class Rebanho {
     }
 
     public void add10(double w, double h) {
-        for (int i = 0; i < 10 && boids.size() < 200; i++) {
+        for (int i = 0; i < 10 && boids.size() < MAXIMO_DE_BOIDS; i++) {
             Boid boid = new Boid(lider.localizaçao.x, lider.localizaçao.y);
             boid.setLider(this.getLider());
             this.addBoid(boid);
@@ -84,8 +85,6 @@ public class Rebanho {
         g.drawString(String.format("Velocidade do Líder: %.2f", lider.velocidade.modulo()), 15, 125);
 
     }
-
-   
 
     private Vetor calculaCentroide() {
         Vetor centroide = new Vetor(lider.localizaçao.x, lider.localizaçao.y);
