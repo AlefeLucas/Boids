@@ -137,7 +137,7 @@ public class Rebanho {
     }
 
     private void drawRastro(Graphics2D g, Vetor ancora) {
-        Color base = Color.white;
+        Color base = BoidsTeste.getContrastColor(g.getBackground());
 
         for (int i = 0; i < rastro.size(); i++) {
             Vetor vetor = rastro.get(i);

@@ -101,7 +101,7 @@ public class Boid {
 
     //aparentemente, lista quais outros boids este boid está enxergando
     void visao(Graphics2D g, List<Boid> boids) {
-        double raioDeVisao = 100;
+        double raioDeVisao = TAMANHO * (100 / 3);
         double anguloPeriferico = PI * 0.85;
 
         for (Boid b : boids) {

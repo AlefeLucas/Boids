@@ -133,7 +133,6 @@ public class BoidsTeste extends JPanel {
             f.add(new BoidsTeste(f), BorderLayout.CENTER);
             f.pack();
             f.setLocationRelativeTo(null);
-
             f.setVisible(true);
 
         });
