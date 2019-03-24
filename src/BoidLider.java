@@ -25,10 +25,10 @@ public class BoidLider extends Boid {
     }
 
     //cor diferente
-    void draw(Graphics2D g) {
+    void draw(Graphics2D g, Vetor ancora) {
         AffineTransform save = g.getTransform();
 
-        g.translate(localizaçao.x, localizaçao.y);
+        g.translate(localizaçao.x - ancora.x, localizaçao.y - ancora.y);
         g.rotate(velocidade.direçao() + PI / 2);
         g.setColor(Color.black);
         g.fill(FORMA_DO_BOID);
@@ -43,10 +43,11 @@ public class BoidLider extends Boid {
     }
 
     //nao tera comportamento de rebanho, sera controlado
-    void run(Graphics2D g, List<Boid> boids, int w, int h) {
+    @Override
+    void run(Graphics2D g, List<Boid> boids, int w, int h, Vetor ancora) {
         leTeclado();
         //System.out.println("Aceleração: " + aceleraçao);
         update(); //atualiza vetores conforme forças calculadas
-        draw(g); //desenha
+        draw(g, ancora); //desenha
     }
 }

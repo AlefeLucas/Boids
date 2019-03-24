@@ -49,7 +49,7 @@ public class Boid {
     void update() {
         velocidade.somar(aceleraçao);
         velocidade.limitar(velocidadeMaxima);
-        localizaçao.somar(velocidade);
+        localizaçao.somar(velocidade); 
         aceleraçao.multiplicar(0); //reseta aceleração, é calculada no rebanho()
     }
 
@@ -210,10 +210,10 @@ public class Boid {
     }
 
     //desenha o boid
-    void draw(Graphics2D g) {
+    void draw(Graphics2D g, Vetor ancora) {
         AffineTransform save = g.getTransform();
 
-        g.translate(localizaçao.x, localizaçao.y);
+        g.translate(localizaçao.x - ancora.x, localizaçao.y - ancora.y);
         g.rotate(velocidade.direçao() + PI / 2);
         g.setColor(Color.black);
         g.fill(FORMA_DO_BOID);
@@ -223,9 +223,9 @@ public class Boid {
         g.setTransform(save);
     }
 
-    void run(Graphics2D g, List<Boid> boids, int w, int h) {
+    void run(Graphics2D g, List<Boid> boids, int w, int h, Vetor ancora) {
         rebanho(g, boids); //calcula as forças a partir do rebanho
         update(); //atualiza vetores conforme forças calculadas
-        draw(g); //desenha
+        draw(g, ancora); //desenha
     }
 }
