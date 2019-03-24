@@ -38,7 +38,7 @@ public class Boid {
         aceleraçao = new Vetor();
         velocidade = new Vetor(RANDOM.nextDouble() * 10 - 5, RANDOM.nextDouble() * 10 - 5);
         localizaçao = new Vetor(x, y);
-        velocidadeMaxima = 5.0;
+        velocidadeMaxima = 3;
         forçaMaxima = 0.05;
     }
 

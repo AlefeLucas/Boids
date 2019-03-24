@@ -68,7 +68,11 @@ public class Rebanho {
                 ancora = new Vetor(0, 0);
 
         }
-
+        
+        for (Boid b : boids) {
+            b.run(g, boids, w, h, ancora);
+        }
+        
         g.setColor(Color.white);
         g.setFont(Font.decode("Arial-BOLD-15"));
         g.drawString("Câmera: " + camera.toString().toLowerCase(), 15, 25);
@@ -76,9 +80,6 @@ public class Rebanho {
         g.drawString("Centróide: " + centroide, 15, 75);
         g.drawString("Rebanho: " + boids.size(), 15, 100);
         g.drawString(String.format("Velocidade do Líder: %.2f", lider.velocidade.modulo()), 15, 125);
-        for (Boid b : boids) {
-            b.run(g, boids, w, h, ancora);
-        }
 
     }
 
