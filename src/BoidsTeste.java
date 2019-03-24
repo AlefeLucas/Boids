@@ -57,6 +57,9 @@ public class BoidsTeste extends JPanel {
                     rebanho.add10(w * 0.5, h * 0.5);
                 } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
                     rebanho.remove10();
+                }else if (e.getKeyCode() == KeyEvent.VK_S) {
+                    rebanho.getLider().velocidade.x = 0;
+                    rebanho.getLider().velocidade.y = 0;
                 } else if (e.getKeyCode() == KeyEvent.VK_B) {
                     if(BACKGROUND_COLOR == Color.black){
                         BACKGROUND_COLOR = Color.white;
