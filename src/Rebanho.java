@@ -16,6 +16,7 @@ public class Rebanho {
     private BoidLider lider;
     private List<Vetor> rastro;
     private boolean drawRastro;
+    private boolean drawHUD;
 
     public void setDrawRastro(boolean drawRastro) {
         this.drawRastro = drawRastro;
@@ -63,14 +64,23 @@ public class Rebanho {
             calculaRastro(centroide);
             drawRastro(g, ancora);
         }
-        
+
         for (Boid b : boids) {
             b.run(g, boids, w, h, ancora);
         }
 
-        
-        drawHUD(g, camera, centroide);
+        if (drawHUD) {
+            drawHUD(g, camera, centroide);
+        }
 
+    }
+
+    public boolean isDrawHUD() {
+        return drawHUD;
+    }
+
+    public void setDrawHUD(boolean drawHUD) {
+        this.drawHUD = drawHUD;
     }
 
     public boolean isDrawRastro() {
@@ -114,7 +124,10 @@ public class Rebanho {
         g.drawString("Rebanho: " + boids.size(), 15, 100);
         g.drawString(String.format("Velocidade do Líder: %.2f", lider.velocidade.modulo()), 15, 125);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        g.drawString("Teclas:", 15, screenSize.height - 175);
+        g.drawString("Teclas:", 15, screenSize.height - 250);
+        g.drawString("ESC  -  sair", 30, screenSize.height - 225);
+        g.drawString("H  -  mostra/esconde HUD", 30, screenSize.height - 200);
+        g.drawString("B  -  muda cor de fundo", 30, screenSize.height - 175);
         g.drawString("Setas  -  mover líder", 30, screenSize.height - 150);
         g.drawString("V  -  câmera", 30, screenSize.height - 125);
         g.drawString("R  -  rastro do rebanho", 30, screenSize.height - 100);
