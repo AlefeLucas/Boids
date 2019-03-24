@@ -74,14 +74,14 @@ public class Boid {
         visao(g, boids);
 
         Vetor rule1 = separacao(boids); //para que eles não andem um em cima do outro
-        Vetor rule2 = alignment(boids);
-        Vetor rule3 = cohesion(boids);
+        Vetor rule2 = alinhamento(boids);
+        Vetor rule3 = coesao(boids);
         Vetor rule4 = seguirLider();
         //pesos
         rule1.multiplicar(2.5);
         rule2.multiplicar(1.5);
         rule3.multiplicar(1.3);
-        rule4.multiplicar(1.0);
+        rule4.multiplicar(1);
 
         aplicarForça(rule1);
         aplicarForça(rule2);
@@ -162,7 +162,7 @@ public class Boid {
     }
 
     //nao compreendi exatamente
-    Vetor alignment(List<Boid> boids) {
+    Vetor alinhamento(List<Boid> boids) {
         double preferredDist = TAMANHO * (50 / 3);
 
         Vetor rumo = new Vetor(0, 0);
@@ -191,7 +191,7 @@ public class Boid {
     }
 
     //nao compreendi exatamente
-    Vetor cohesion(List<Boid> boids) {
+    Vetor coesao(List<Boid> boids) {
         double preferredDist = TAMANHO * (50 / 3);
 
         Vetor alvo = new Vetor(0, 0);
