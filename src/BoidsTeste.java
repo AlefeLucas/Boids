@@ -53,9 +53,9 @@ public class BoidsTeste extends JPanel {
                     rebanho.getLider().cima = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     rebanho.getLider().baixo = true;
-                } else if (e.getKeyCode() == KeyEvent.VK_ADD) {
+                } else if (e.getKeyCode() == KeyEvent.VK_ADD || e.getKeyCode() == KeyEvent.VK_EQUALS) {
                     rebanho.add10(w * 0.5, h * 0.5);
-                } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
+                } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT || e.getKeyCode() == KeyEvent.VK_MINUS) {
                     rebanho.remove10();
                 } else if (e.getKeyCode() == KeyEvent.VK_H) {
                     rebanho.setDrawHUD(!rebanho.isDrawHUD());
