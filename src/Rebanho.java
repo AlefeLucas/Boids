@@ -15,6 +15,7 @@ public class Rebanho {
     private List<Boid> boids;
     private BoidLider lider;
     private List<Vetor> rastro;
+    private List<Vetor> rastroLider;
     private boolean drawRastro;
     private boolean drawHUD;
 
@@ -22,6 +23,7 @@ public class Rebanho {
         this.drawRastro = drawRastro;
         if (!drawRastro) {
             rastro.clear();
+            rastroLider.clear();
         }
     }
 
@@ -54,6 +56,7 @@ public class Rebanho {
         boids = new ArrayList<>();
         this.setLider(new BoidLider(w, h));
         this.rastro = new LinkedList<>();
+        this.rastroLider = new LinkedList<>();
     }
 
     void run(Graphics2D g, int w, int h, Camera camera) {
@@ -61,8 +64,10 @@ public class Rebanho {
         Vetor centroide = calculaCentroide();
         Vetor ancora = calculaAncora(camera, w, h, centroide);
         if (drawRastro) {
+            calculaRastroLider(new Vetor(lider.localizaçao.x, lider.localizaçao.y));
             calculaRastro(centroide);
             drawRastro(g, ancora);
+            drawRastroLider(g, ancora);
         }
 
         for (Boid b : boids) {
@@ -144,6 +149,26 @@ public class Rebanho {
             Color cor = new Color(base.getRed(), base.getGreen(), base.getBlue(), (int) (((rastro.size() - i) / ((double) rastro.size())) * 255.0));
             g.setColor(cor);
             g.fillOval((int) ((vetor.x - 2) - ancora.x), (int) ((vetor.y - 2) - ancora.y), 4, 4);
+        }
+    }
+    
+    private void drawRastroLider(Graphics2D g, Vetor ancora) {
+        Color base = Color.yellow.darker();
+
+        for (int i = 0; i < rastroLider.size(); i++) {
+            Vetor vetor = rastroLider.get(i);
+            Color cor = new Color(base.getRed(), base.getGreen(), base.getBlue(), (int) (((rastroLider.size() - i) / ((double) rastroLider.size())) * 255.0));
+            g.setColor(cor);
+            g.fillOval((int) ((vetor.x - 1) - ancora.x), (int) ((vetor.y - 1) - ancora.y), 2, 2);
+        }
+    }
+    
+    private void calculaRastroLider(Vetor posicaoLider) {
+        if (rastroLider.size() < 300) {
+            rastroLider.add(0, posicaoLider);
+        } else {
+            rastroLider.remove(rastroLider.size() - 1);
+            rastroLider.add(0, posicaoLider);
         }
     }
 
