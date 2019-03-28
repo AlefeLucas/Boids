@@ -10,7 +10,6 @@ import java.util.Random;
 public class Boid {
 
     static final Random RANDOM = new Random();
-    static final Vetor DIREÇAO_MIGRAÇAO = new Vetor(0.00, 0.00);
     static final int TAMANHO = 6;
     static final Path2D FORMA_DO_BOID = new Path2D.Double();
 
