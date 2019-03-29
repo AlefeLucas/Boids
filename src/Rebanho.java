@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Rebanho {
 
-    private static final int MAXIMO_DE_BOIDS = 200; //CUIDADO, se por muito seu CPU frita.
+    private static final int MAXIMO_DE_BOIDS = 100; //CUIDADO, se por muito seu CPU frita.
     private List<Boid> boids;
     private BoidLider lider;
     private List<Vetor> rastro;
@@ -31,7 +31,7 @@ public class Rebanho {
         return lider;
     }
 
-    public void add10(double w, double h) {
+    public void add10() {
         for (int i = 0; i < 10 && boids.size() < MAXIMO_DE_BOIDS; i++) {
             Boid boid = new Boid(lider.localizaçao.x, lider.localizaçao.y);
             boid.setLider(this.getLider());
@@ -121,14 +121,18 @@ public class Rebanho {
     }
 
     private void drawHUD(Graphics2D g, Camera camera, Vetor centroide) {
-        g.setColor(BoidsTeste.getContrastColor(g.getBackground()));
+        g.setColor(BoidsPanel.getContrastColor(g.getBackground()));
         g.setFont(Font.decode("Arial-BOLD-15"));
+        
         g.drawString("Câmera: " + camera.toString().toLowerCase().replaceAll("_", " "), 15, 25);
         g.drawString("Líder: " + lider.localizaçao, 15, 50);
         g.drawString("Centróide: " + centroide, 15, 75);
         g.drawString("Rebanho: " + boids.size(), 15, 100);
         g.drawString(String.format("Velocidade do Líder: %.2f", lider.velocidade.modulo()), 15, 125);
+        
+       
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
         g.drawString("Teclas:", 15, screenSize.height - 250);
         g.drawString("ESC  -  sair", 30, screenSize.height - 225);
         g.drawString("H  -  mostra/esconde HUD", 30, screenSize.height - 200);
@@ -142,7 +146,7 @@ public class Rebanho {
     }
 
     private void drawRastro(Graphics2D g, Vetor ancora) {
-        Color base = BoidsTeste.getContrastColor(g.getBackground());
+        Color base = BoidsPanel.getContrastColor(g.getBackground());
 
         for (int i = 0; i < rastro.size(); i++) {
             Vetor vetor = rastro.get(i);
@@ -191,16 +195,6 @@ public class Rebanho {
         centroide.subtrair(lider.localizaçao);
         centroide.dividir(boids.size() - 1);
         return centroide;
-    }
-
-    boolean saiuDoCenario(int w, int h) {
-        int count = 0;
-        for (Boid b : boids) {
-            if (b.localizaçao.x + Boid.TAMANHO > w || b.localizaçao.x < 0 || b.localizaçao.y < 0 || b.localizaçao.y + Boid.TAMANHO > h) {
-                count++;
-            }
-        }
-        return boids.size() == count;
     }
 
     void addBoid(Boid b) {

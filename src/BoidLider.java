@@ -12,7 +12,7 @@ public class BoidLider extends Boid {
 
     public BoidLider(double x, double y) {
         super(x, y);
-        velocidade = new Vetor(2, 0);
+        velocidade = new Vetor(1, 0);
         localizaçao = new Vetor(x, y);
         velocidadeMaxima = 5.5;
         forçaMaxima = 0.1;
@@ -26,7 +26,6 @@ public class BoidLider extends Boid {
         g.rotate(velocidade.direçao() + PI / 2);
         g.setColor(Color.yellow);
         g.fill(FORMA_DO_BOID);
-        g.setColor(Color.yellow);
         g.draw(FORMA_DO_BOID);
 
         g.setTransform(save);

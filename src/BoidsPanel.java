@@ -3,26 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.geom.*;
-import static java.lang.Math.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.Timer;
 
-public class BoidsTeste extends JPanel {
+public class BoidsPanel extends JPanel {
 
     private static Color BACKGROUND_COLOR = Color.black;
     Rebanho rebanho;
     final int w, h;
     Camera camera;
-    JFrame f;
+    JFrame frame;
 
-    public BoidsTeste(JFrame f) {
+    public BoidsPanel(JFrame frame) {
 
-        this.f = f;
+        this.frame = frame;
+        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         w = screenSize.width;
         h = screenSize.height;
@@ -37,13 +34,21 @@ public class BoidsTeste extends JPanel {
             repaint();
         }).start();
         this.setFocusable(true);
-
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                super.mouseReleased(e);
+                requestFocus();
+            }
+        });
+        
+        
         this.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    f.dispose();
+                    frame.dispose();
                     System.exit(0);
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     rebanho.getLider().esquerda = true;
@@ -54,7 +59,7 @@ public class BoidsTeste extends JPanel {
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     rebanho.getLider().baixo = true;
                 } else if (e.getKeyCode() == KeyEvent.VK_ADD || e.getKeyCode() == KeyEvent.VK_EQUALS) {
-                    rebanho.add10(w * 0.5, h * 0.5);
+                    rebanho.add10();
                 } else if (e.getKeyCode() == KeyEvent.VK_SUBTRACT || e.getKeyCode() == KeyEvent.VK_MINUS) {
                     rebanho.remove10();
                 } else if (e.getKeyCode() == KeyEvent.VK_H) {
@@ -118,25 +123,26 @@ public class BoidsTeste extends JPanel {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         g.setBackground(getBackground());
+        int alturaPanel = this.getHeight();
         rebanho.run(g, w, h, camera);
 
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame f = new JFrame();
-            f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            f.setUndecorated(true);
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            f.setTitle("Boids");
-            f.setResizable(true);
-            f.add(new BoidsTeste(f), BorderLayout.CENTER);
-            f.pack();
-            f.setLocationRelativeTo(null);
-            f.setVisible(true);
-
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            JFrame frame = new JFrame();
+//            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//            frame.setUndecorated(true);
+//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            frame.setTitle("Boids");
+//            frame.setResizable(true);
+//            frame.add(new BoidsPanel(frame), BorderLayout.CENTER);
+//            frame.pack();
+//            frame.setLocationRelativeTo(null);
+//            frame.setVisible(true);
+//
+//        });
+//    }
 
     public static Color getContrastColor(Color color) {
         double y = (299 * color.getRed() + 587 * color.getGreen() + 114 * color.getBlue()) / 1000;

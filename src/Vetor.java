@@ -45,6 +45,7 @@ public class Vetor {
         return x * v.x + y * v.y;
     }
 
+    
     void normalizar() {
         double modulo = modulo();
         if (modulo != 0) {

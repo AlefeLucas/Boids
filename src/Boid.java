@@ -6,10 +6,7 @@ import java.awt.geom.Path2D;
 import static java.lang.Math.PI;
 import java.util.List;
 import java.util.Random;
-/**
- * A luana nao é gay
- * @author alefe
- */
+
 public class Boid {
 
     static final Random RANDOM = new Random();
@@ -26,7 +23,6 @@ public class Boid {
         FORMA_DO_BOID.lineTo(TAMANHO, TAMANHO * (3f / 2));
         FORMA_DO_BOID.closePath();
 
-        FORMA_DO_BOID.closePath();
     }
 
     double forçaMaxima, velocidadeMaxima;
@@ -78,11 +74,14 @@ public class Boid {
         Vetor rule1 = separacao(boids); //para que eles não andem um em cima do outro
         Vetor rule2 = alinhamento(boids);
         Vetor rule3 = coesao(boids);
+        
         Vetor rule4 = seguirLider();
-        //pesos
+        //pesos - 0 5
         rule1.multiplicar(2.5);
         rule2.multiplicar(1.5);
         rule3.multiplicar(1.3);
+        
+        //-10 a 30 maybe
         rule4.multiplicar(1);
 
         aplicarForça(rule1);
@@ -119,9 +118,9 @@ public class Boid {
                 continue;
             }
 
-            Vetor lineOfSight = Vetor.subtrair(b.localizaçao, localizaçao);  //vetor na direção do boid avistado
+            Vetor linhaDeVisao = Vetor.subtrair(b.localizaçao, localizaçao);  //vetor na direção do boid avistado
 
-            double angle = Vetor.anguloEntre(lineOfSight, velocidade); //angulo desse vetor
+            double angle = Vetor.anguloEntre(linhaDeVisao, velocidade); //angulo desse vetor
             if (angle < anguloPeriferico) { //se esse angulo ta é menor que o angulo periferico, quer dizer que está dentro do campo de visão
                 b.avistado = true;
             }
@@ -225,7 +224,6 @@ public class Boid {
         g.rotate(velocidade.direçao() + PI / 2);
         g.setColor(Color.red);
         g.fill(FORMA_DO_BOID);
-        g.setColor(Color.red);
         g.draw(FORMA_DO_BOID);
 
         g.setTransform(save);
