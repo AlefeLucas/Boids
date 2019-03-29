@@ -7,7 +7,7 @@ import static java.lang.Math.PI;
 import java.util.List;
 import java.util.Random;
 /**
- * A luana é gay
+ * A luana nao é gay
  * @author alefe
  */
 public class Boid {
