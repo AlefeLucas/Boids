@@ -12,7 +12,7 @@ public class BoidsPanel extends JPanel {
 
     private static Color BACKGROUND_COLOR = Color.black;
     Rebanho rebanho;
-    final int w, h;
+
     Camera camera;
     JFrame frame;
 
@@ -20,12 +20,10 @@ public class BoidsPanel extends JPanel {
 
         this.frame = frame;
         
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        w = screenSize.width;
-        h = screenSize.height;
+
 
         camera = Camera.CENTRO;
-        setPreferredSize(new Dimension(w, h));
+        //setPreferredSize(new Dimension(w, h));
         setBackground(BACKGROUND_COLOR);
 
         spawnRebanho();
@@ -111,7 +109,7 @@ public class BoidsPanel extends JPanel {
     }
 
     private void spawnRebanho() {
-        rebanho = Rebanho.spawn(w * 0.5, h * 0.5, 59);
+        rebanho = Rebanho.spawn(200, 200, 59);
     }
 
     //roda a cada frame, responsavel por desenhar
@@ -124,7 +122,7 @@ public class BoidsPanel extends JPanel {
 
         g.setBackground(getBackground());
         int alturaPanel = this.getHeight();
-        rebanho.run(g, w, h, camera);
+        rebanho.run(g, getWidth(), getHeight(), camera);
 
     }
 

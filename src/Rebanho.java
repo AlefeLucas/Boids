@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -122,7 +123,9 @@ public class Rebanho {
 
     private void drawHUD(Graphics2D g, Camera camera, Vetor centroide) {
         g.setColor(BoidsPanel.getContrastColor(g.getBackground()));
-        g.setFont(Font.decode("Arial-BOLD-15"));
+        Font fonte = Font.decode("Arial-BOLD-15");
+        g.setFont(fonte);
+
         
         g.drawString("Câmera: " + camera.toString().toLowerCase().replaceAll("_", " "), 15, 25);
         g.drawString("Líder: " + lider.localizaçao, 15, 50);
@@ -133,16 +136,16 @@ public class Rebanho {
        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         
-        g.drawString("Teclas:", 15, screenSize.height - 250);
-        g.drawString("ESC  -  sair", 30, screenSize.height - 225);
-        g.drawString("H  -  mostra/esconde HUD", 30, screenSize.height - 200);
-        g.drawString("B  -  muda cor de fundo", 30, screenSize.height - 175);
-        g.drawString("Setas  -  mover líder", 30, screenSize.height - 150);
-        g.drawString("V  -  câmera", 30, screenSize.height - 125);
-        g.drawString("R  -  rastro do rebanho", 30, screenSize.height - 100);
-        g.drawString("S  -  parar líder", 30, screenSize.height - 75);
-        g.drawString("+  -  adiciona 10 boids", 30, screenSize.height - 50);
-        g.drawString("\"-\"  -  retira 10 boids", 30, screenSize.height - 25);
+        g.drawString("Teclas:", screenSize.width - 215, 25);
+        g.drawString("ESC  -  sair", screenSize.width - 200, 50);
+        g.drawString("H  -  mostra/esconde HUD", screenSize.width - 200, 75);
+        g.drawString("B  -  muda cor de fundo", screenSize.width - 200, 100);
+        g.drawString("Setas  -  mover líder", screenSize.width - 200, 125);
+        g.drawString("V  -  câmera", screenSize.width - 200, 150);
+        g.drawString("R  -  rastro do rebanho", screenSize.width - 200, 175);
+        g.drawString("S  -  parar líder", screenSize.width - 200, 200);
+        g.drawString("+  -  adiciona 10 boids", screenSize.width - 200, 225);
+        g.drawString("\"-\"  -  retira 10 boids", screenSize.width - 200, 250);
     }
 
     private void drawRastro(Graphics2D g, Vetor ancora) {

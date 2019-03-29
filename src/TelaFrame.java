@@ -25,15 +25,22 @@ public class TelaFrame extends javax.swing.JFrame {
      * Creates new form TelaFrame
      */
     public TelaFrame() {
-        initComponents();
-    
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
+        this.setUndecorated(true);
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Boids");
         this.setResizable(true);
         this.add(new BoidsPanel(this), BorderLayout.CENTER);
+ 
         this.pack();
+        
         this.setLocationRelativeTo(null);
+        
+        this.setVisible(true);
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
      
     }
 
@@ -159,7 +166,7 @@ public class TelaFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaFrame().setVisible(true);
+                new TelaFrame();
             }
         });
     }
