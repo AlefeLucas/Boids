@@ -16,7 +16,7 @@ public class BoidsPanel extends JPanel {
     Camera camera;
     JFrame frame;
 
-    public BoidsPanel(JFrame frame) {
+    public BoidsPanel(TelaFrame frame) {
 
         this.frame = frame;
         
@@ -62,6 +62,7 @@ public class BoidsPanel extends JPanel {
                     rebanho.remove10();
                 } else if (e.getKeyCode() == KeyEvent.VK_H) {
                     rebanho.setDrawHUD(!rebanho.isDrawHUD());
+                    frame.jPanel2.setVisible(rebanho.isDrawHUD());
                 } else if (e.getKeyCode() == KeyEvent.VK_R) {
                     rebanho.setDrawRastro(!rebanho.isDrawRastro());
                 }else if (e.getKeyCode() == KeyEvent.VK_S) {

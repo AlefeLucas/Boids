@@ -67,6 +67,7 @@ public class TelaFrame extends JFrame {
         sliderSeparacao.setValue(250);
         sliderAlinhamento.setValue(150);
         sliderSeguirLider.setValue(100);
+        jPanel2.setVisible(false);
      
     }
 
@@ -301,7 +302,7 @@ public class TelaFrame extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JPanel jPanel2;
+    public JPanel jPanel2;
     private JLabel labelAlinhamento;
     private JLabel labelCoesao;
     private JLabel labelNAlinhamento;
