@@ -1,6 +1,9 @@
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
@@ -54,194 +57,97 @@ public class TelaFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        GridBagConstraints gridBagConstraints;
 
         jPanel2 = new JPanel();
-        jPanel4 = new JPanel();
-        labelCoesao = new JLabel();
-        SliderCoesao = new JSlider();
-        labelNCoesao = new JLabel();
-        jPanel3 = new JPanel();
-        labelSeguirLider = new JLabel();
-        labelNSeguirLider = new JLabel();
-        SliderSeguirLider = new JSlider();
-        jPanel5 = new JPanel();
-        labelSeparacao = new JLabel();
-        SliderSeparacao = new JSlider();
-        labelNSeparacao = new JLabel();
-        jPanel1 = new JPanel();
+        panelAlinhamento = new JPanel();
         SliderAlinhamento = new JSlider();
         labelAlinhamento = new JLabel();
         labelNAlinhamento = new JLabel();
+        panelAlinhamento1 = new JPanel();
+        SliderAlinhamento1 = new JSlider();
+        labelAlinhamento1 = new JLabel();
+        labelNAlinhamento1 = new JLabel();
+        panelAlinhamento2 = new JPanel();
+        SliderAlinhamento2 = new JSlider();
+        labelAlinhamento2 = new JLabel();
+        labelNAlinhamento2 = new JLabel();
+        panelAlinhamento3 = new JPanel();
+        SliderAlinhamento3 = new JSlider();
+        labelAlinhamento3 = new JLabel();
+        labelNAlinhamento3 = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new Color(0, 0, 0));
         setPreferredSize(new Dimension(800, 600));
 
-        jPanel2.setPreferredSize(new Dimension(606, 200));
+        jPanel2.setPreferredSize(new Dimension(606, 50));
         jPanel2.setLayout(new GridLayout(1, 4));
 
-        labelCoesao.setText("Coesão");
-
-        labelNCoesao.setText("0");
-
-        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelCoesao, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SliderCoesao, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelNCoesao, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelCoesao, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SliderCoesao, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelNCoesao, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jPanel2.add(jPanel4);
-
-        labelSeguirLider.setText("Seguir Lider");
-
-        labelNSeguirLider.setText("3");
-
-        SliderSeguirLider.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                SliderSeguirLiderStateChanged(evt);
-            }
-        });
-
-        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelSeguirLider, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelNSeguirLider, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(165, 165, 165)
-                    .addComponent(SliderSeguirLider, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(165, Short.MAX_VALUE)))
-        );
-        jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 212, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelSeguirLider, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelNSeguirLider, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(SliderSeguirLider, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        jPanel2.add(jPanel3);
-
-        labelSeparacao.setText("Separação");
-
-        labelNSeparacao.setText("1");
-
-        GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelSeparacao, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SliderSeparacao, GroupLayout.PREFERRED_SIZE, 440, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelNSeparacao, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelSeparacao, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(SliderSeparacao, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(labelNSeparacao, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jPanel2.add(jPanel5);
-
-        jPanel1.setLayout(new GridLayout());
-        jPanel1.add(SliderAlinhamento);
+        panelAlinhamento.setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        panelAlinhamento.add(SliderAlinhamento, gridBagConstraints);
 
         labelAlinhamento.setText("Alinhamento");
-        jPanel1.add(labelAlinhamento);
+        panelAlinhamento.add(labelAlinhamento, new GridBagConstraints());
 
         labelNAlinhamento.setText("2");
-        jPanel1.add(labelNAlinhamento);
+        panelAlinhamento.add(labelNAlinhamento, new GridBagConstraints());
 
-        jPanel2.add(jPanel1);
+        jPanel2.add(panelAlinhamento);
+
+        panelAlinhamento1.setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        panelAlinhamento1.add(SliderAlinhamento1, gridBagConstraints);
+
+        labelAlinhamento1.setText("Alinhamento");
+        panelAlinhamento1.add(labelAlinhamento1, new GridBagConstraints());
+
+        labelNAlinhamento1.setText("2");
+        panelAlinhamento1.add(labelNAlinhamento1, new GridBagConstraints());
+
+        jPanel2.add(panelAlinhamento1);
+
+        panelAlinhamento2.setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        panelAlinhamento2.add(SliderAlinhamento2, gridBagConstraints);
+
+        labelAlinhamento2.setText("Alinhamento");
+        panelAlinhamento2.add(labelAlinhamento2, new GridBagConstraints());
+
+        labelNAlinhamento2.setText("2");
+        panelAlinhamento2.add(labelNAlinhamento2, new GridBagConstraints());
+
+        jPanel2.add(panelAlinhamento2);
+
+        panelAlinhamento3.setLayout(new GridBagLayout());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        panelAlinhamento3.add(SliderAlinhamento3, gridBagConstraints);
+
+        labelAlinhamento3.setText("Alinhamento");
+        panelAlinhamento3.add(labelAlinhamento3, new GridBagConstraints());
+
+        labelNAlinhamento3.setText("2");
+        panelAlinhamento3.add(labelNAlinhamento3, new GridBagConstraints());
+
+        jPanel2.add(panelAlinhamento3);
 
         getContentPane().add(jPanel2, BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void SliderSeguirLiderStateChanged(ChangeEvent evt) {//GEN-FIRST:event_SliderSeguirLiderStateChanged
-        // TODO add your handling code here:
-        SliderCoesao = new JSlider();
-        this.setSize(300,300);
-        labelNCoesao.setText("" + SliderCoesao.getValue());
-    }//GEN-LAST:event_SliderSeguirLiderStateChanged
 
     /**
      * @param args the command line arguments
@@ -280,21 +186,21 @@ public class TelaFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JSlider SliderAlinhamento;
-    private JSlider SliderCoesao;
-    private JSlider SliderSeguirLider;
-    private JSlider SliderSeparacao;
-    private JPanel jPanel1;
+    private JSlider SliderAlinhamento1;
+    private JSlider SliderAlinhamento2;
+    private JSlider SliderAlinhamento3;
     private JPanel jPanel2;
-    private JPanel jPanel3;
-    private JPanel jPanel4;
-    private JPanel jPanel5;
     private JLabel labelAlinhamento;
-    private JLabel labelCoesao;
+    private JLabel labelAlinhamento1;
+    private JLabel labelAlinhamento2;
+    private JLabel labelAlinhamento3;
     private JLabel labelNAlinhamento;
-    private JLabel labelNCoesao;
-    private JLabel labelNSeguirLider;
-    private JLabel labelNSeparacao;
-    private JLabel labelSeguirLider;
-    private JLabel labelSeparacao;
+    private JLabel labelNAlinhamento1;
+    private JLabel labelNAlinhamento2;
+    private JLabel labelNAlinhamento3;
+    private JPanel panelAlinhamento;
+    private JPanel panelAlinhamento1;
+    private JPanel panelAlinhamento2;
+    private JPanel panelAlinhamento3;
     // End of variables declaration//GEN-END:variables
 }

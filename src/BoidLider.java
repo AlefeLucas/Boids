@@ -24,7 +24,7 @@ public class BoidLider extends Boid {
 
         g.translate(localizaçao.x - ancora.x, localizaçao.y - ancora.y);
         g.rotate(velocidade.direçao() + PI / 2);
-        g.setColor(Color.yellow);
+        g.setColor(Color.green);
         g.fill(FORMA_DO_BOID);
         g.draw(FORMA_DO_BOID);
 
