@@ -194,7 +194,7 @@ public class Boid {
         return rumo;
     }
 
-    //nao compreendi exatamente
+    //seguir o centroide
     Vetor coesao(List<Boid> boids) {
         double preferredDist = TAMANHO * (50 / 3);
 

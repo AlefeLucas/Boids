@@ -2,18 +2,20 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import javax.swing.GroupLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +26,9 @@ import javax.swing.event.ChangeListener;
  *
  * @author alefe
  */
-public class TelaFrame extends javax.swing.JFrame {
+public class TelaFrame extends JFrame {
+
+    private final BoidsPanel boidPanel;
 
     /**
      * Creates new form TelaFrame
@@ -37,7 +41,8 @@ public class TelaFrame extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Boids");
         this.setResizable(true);
-        this.add(new BoidsPanel(this), BorderLayout.CENTER);
+        boidPanel = new BoidsPanel(this);
+        this.add(boidPanel, BorderLayout.CENTER);
  
         this.pack();
         
@@ -55,7 +60,8 @@ public class TelaFrame extends javax.swing.JFrame {
         sliderCoesao.setMaximum(500);
         sliderSeparacao.setMaximum(500);
         sliderAlinhamento.setMaximum(500);
-        sliderSeguirLider.setMaximum(500);
+        sliderSeguirLider.setMaximum(3000);
+        sliderSeguirLider.setMinimum(-1000);
         
         sliderCoesao.setValue(130);
         sliderSeparacao.setValue(250);
@@ -106,15 +112,22 @@ public class TelaFrame extends javax.swing.JFrame {
                 sliderCoesaoStateChanged(evt);
             }
         });
+        sliderCoesao.addMouseListener(new MouseAdapter() {
+            public void mouseReleased(MouseEvent evt) {
+                sliderCoesaoMouseReleased(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         panelCoesao.add(sliderCoesao, gridBagConstraints);
 
+        labelCoesao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelCoesao.setText("Coesao");
         panelCoesao.add(labelCoesao, new GridBagConstraints());
 
+        labelNCoesao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelNCoesao.setText("1");
         panelCoesao.add(labelNCoesao, new GridBagConstraints());
 
@@ -127,15 +140,22 @@ public class TelaFrame extends javax.swing.JFrame {
                 sliderSeparacaoStateChanged(evt);
             }
         });
+        sliderSeparacao.addMouseListener(new MouseAdapter() {
+            public void mouseReleased(MouseEvent evt) {
+                sliderSeparacaoMouseReleased(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         panelSeparacao.add(sliderSeparacao, gridBagConstraints);
 
+        labelSeparacao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelSeparacao.setText("Separacao");
         panelSeparacao.add(labelSeparacao, new GridBagConstraints());
 
+        labelNSeparacao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelNSeparacao.setText("2");
         panelSeparacao.add(labelNSeparacao, new GridBagConstraints());
 
@@ -148,15 +168,22 @@ public class TelaFrame extends javax.swing.JFrame {
                 sliderAlinhamentoStateChanged(evt);
             }
         });
+        sliderAlinhamento.addMouseListener(new MouseAdapter() {
+            public void mouseReleased(MouseEvent evt) {
+                sliderAlinhamentoMouseReleased(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         panelAlinhamento.add(sliderAlinhamento, gridBagConstraints);
 
+        labelAlinhamento.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelAlinhamento.setText("Alinhamento");
         panelAlinhamento.add(labelAlinhamento, new GridBagConstraints());
 
+        labelNAlinhamento.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelNAlinhamento.setText("3");
         panelAlinhamento.add(labelNAlinhamento, new GridBagConstraints());
 
@@ -169,15 +196,22 @@ public class TelaFrame extends javax.swing.JFrame {
                 sliderSeguirLiderStateChanged(evt);
             }
         });
+        sliderSeguirLider.addMouseListener(new MouseAdapter() {
+            public void mouseReleased(MouseEvent evt) {
+                sliderSeguirLiderMouseReleased(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         panelSeguirLider.add(sliderSeguirLider, gridBagConstraints);
 
+        labelSeguirLider.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelSeguirLider.setText("Seguir Lider");
         panelSeguirLider.add(labelSeguirLider, new GridBagConstraints());
 
+        labelNSeguirLider.setFont(new Font("Tahoma", 1, 14)); // NOI18N
         labelNSeguirLider.setText("4");
         panelSeguirLider.add(labelNSeguirLider, new GridBagConstraints());
 
@@ -212,6 +246,24 @@ public class TelaFrame extends javax.swing.JFrame {
         Boid.seguirLiderPeso = sliderSeguirLider.getValue()/100.0;
         labelNSeguirLider.setText("" + (sliderSeguirLider.getValue()/100.0)); 
     }//GEN-LAST:event_sliderSeguirLiderStateChanged
+
+    private void sliderSeparacaoMouseReleased(MouseEvent evt) {//GEN-FIRST:event_sliderSeparacaoMouseReleased
+        // TODO add your handling code here:
+        boidPanel.requestFocus();
+    }//GEN-LAST:event_sliderSeparacaoMouseReleased
+
+    private void sliderCoesaoMouseReleased(MouseEvent evt) {//GEN-FIRST:event_sliderCoesaoMouseReleased
+
+        boidPanel.requestFocus();
+    }//GEN-LAST:event_sliderCoesaoMouseReleased
+
+    private void sliderAlinhamentoMouseReleased(MouseEvent evt) {//GEN-FIRST:event_sliderAlinhamentoMouseReleased
+        boidPanel.requestFocus();
+    }//GEN-LAST:event_sliderAlinhamentoMouseReleased
+
+    private void sliderSeguirLiderMouseReleased(MouseEvent evt) {//GEN-FIRST:event_sliderSeguirLiderMouseReleased
+        boidPanel.requestFocus();
+    }//GEN-LAST:event_sliderSeguirLiderMouseReleased
 
     /**
      * @param args the command line arguments
