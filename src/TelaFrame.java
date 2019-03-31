@@ -124,7 +124,7 @@ public class TelaFrame extends JFrame {
         panelCoesao.add(sliderCoesao, gridBagConstraints);
 
         labelCoesao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
-        labelCoesao.setText("Coesao");
+        labelCoesao.setText("Coesão");
         panelCoesao.add(labelCoesao, new GridBagConstraints());
 
         labelNCoesao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
@@ -152,7 +152,7 @@ public class TelaFrame extends JFrame {
         panelSeparacao.add(sliderSeparacao, gridBagConstraints);
 
         labelSeparacao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
-        labelSeparacao.setText("Separacao");
+        labelSeparacao.setText("Separação");
         panelSeparacao.add(labelSeparacao, new GridBagConstraints());
 
         labelNSeparacao.setFont(new Font("Tahoma", 1, 14)); // NOI18N
@@ -208,7 +208,7 @@ public class TelaFrame extends JFrame {
         panelSeguirLider.add(sliderSeguirLider, gridBagConstraints);
 
         labelSeguirLider.setFont(new Font("Tahoma", 1, 14)); // NOI18N
-        labelSeguirLider.setText("Seguir Lider");
+        labelSeguirLider.setText("Seguir Líder");
         panelSeguirLider.add(labelSeguirLider, new GridBagConstraints());
 
         labelNSeguirLider.setFont(new Font("Tahoma", 1, 14)); // NOI18N
