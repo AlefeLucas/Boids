@@ -46,6 +46,21 @@ public class TelaFrame extends javax.swing.JFrame {
         this.setVisible(true);
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        sliderCoesao.setMinimum(0);
+        sliderSeparacao.setMinimum(0);
+        sliderAlinhamento.setMinimum(0);
+        sliderSeguirLider.setMinimum(0);
+        
+        sliderCoesao.setMaximum(500);
+        sliderSeparacao.setMaximum(500);
+        sliderAlinhamento.setMaximum(500);
+        sliderSeguirLider.setMaximum(500);
+        
+        sliderCoesao.setValue(130);
+        sliderSeparacao.setValue(250);
+        sliderAlinhamento.setValue(150);
+        sliderSeguirLider.setValue(100);
      
     }
 
@@ -60,22 +75,22 @@ public class TelaFrame extends javax.swing.JFrame {
         GridBagConstraints gridBagConstraints;
 
         jPanel2 = new JPanel();
+        panelCoesao = new JPanel();
+        sliderCoesao = new JSlider();
+        labelCoesao = new JLabel();
+        labelNCoesao = new JLabel();
+        panelSeparacao = new JPanel();
+        sliderSeparacao = new JSlider();
+        labelSeparacao = new JLabel();
+        labelNSeparacao = new JLabel();
         panelAlinhamento = new JPanel();
-        SliderAlinhamento = new JSlider();
+        sliderAlinhamento = new JSlider();
         labelAlinhamento = new JLabel();
         labelNAlinhamento = new JLabel();
-        panelAlinhamento1 = new JPanel();
-        SliderAlinhamento1 = new JSlider();
-        labelAlinhamento1 = new JLabel();
-        labelNAlinhamento1 = new JLabel();
-        panelAlinhamento2 = new JPanel();
-        SliderAlinhamento2 = new JSlider();
-        labelAlinhamento2 = new JLabel();
-        labelNAlinhamento2 = new JLabel();
-        panelAlinhamento3 = new JPanel();
-        SliderAlinhamento3 = new JSlider();
-        labelAlinhamento3 = new JLabel();
-        labelNAlinhamento3 = new JLabel();
+        panelSeguirLider = new JPanel();
+        sliderSeguirLider = new JSlider();
+        labelSeguirLider = new JLabel();
+        labelNSeguirLider = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(new Color(0, 0, 0));
@@ -84,70 +99,119 @@ public class TelaFrame extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new Dimension(606, 50));
         jPanel2.setLayout(new GridLayout(1, 4));
 
-        panelAlinhamento.setLayout(new GridBagLayout());
+        panelCoesao.setLayout(new GridBagLayout());
+
+        sliderCoesao.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                sliderCoesaoStateChanged(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        panelAlinhamento.add(SliderAlinhamento, gridBagConstraints);
+        panelCoesao.add(sliderCoesao, gridBagConstraints);
+
+        labelCoesao.setText("Coesao");
+        panelCoesao.add(labelCoesao, new GridBagConstraints());
+
+        labelNCoesao.setText("1");
+        panelCoesao.add(labelNCoesao, new GridBagConstraints());
+
+        jPanel2.add(panelCoesao);
+
+        panelSeparacao.setLayout(new GridBagLayout());
+
+        sliderSeparacao.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                sliderSeparacaoStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        panelSeparacao.add(sliderSeparacao, gridBagConstraints);
+
+        labelSeparacao.setText("Separacao");
+        panelSeparacao.add(labelSeparacao, new GridBagConstraints());
+
+        labelNSeparacao.setText("2");
+        panelSeparacao.add(labelNSeparacao, new GridBagConstraints());
+
+        jPanel2.add(panelSeparacao);
+
+        panelAlinhamento.setLayout(new GridBagLayout());
+
+        sliderAlinhamento.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                sliderAlinhamentoStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        panelAlinhamento.add(sliderAlinhamento, gridBagConstraints);
 
         labelAlinhamento.setText("Alinhamento");
         panelAlinhamento.add(labelAlinhamento, new GridBagConstraints());
 
-        labelNAlinhamento.setText("2");
+        labelNAlinhamento.setText("3");
         panelAlinhamento.add(labelNAlinhamento, new GridBagConstraints());
 
         jPanel2.add(panelAlinhamento);
 
-        panelAlinhamento1.setLayout(new GridBagLayout());
+        panelSeguirLider.setLayout(new GridBagLayout());
+
+        sliderSeguirLider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                sliderSeguirLiderStateChanged(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
-        panelAlinhamento1.add(SliderAlinhamento1, gridBagConstraints);
+        panelSeguirLider.add(sliderSeguirLider, gridBagConstraints);
 
-        labelAlinhamento1.setText("Alinhamento");
-        panelAlinhamento1.add(labelAlinhamento1, new GridBagConstraints());
+        labelSeguirLider.setText("Seguir Lider");
+        panelSeguirLider.add(labelSeguirLider, new GridBagConstraints());
 
-        labelNAlinhamento1.setText("2");
-        panelAlinhamento1.add(labelNAlinhamento1, new GridBagConstraints());
+        labelNSeguirLider.setText("4");
+        panelSeguirLider.add(labelNSeguirLider, new GridBagConstraints());
 
-        jPanel2.add(panelAlinhamento1);
-
-        panelAlinhamento2.setLayout(new GridBagLayout());
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        panelAlinhamento2.add(SliderAlinhamento2, gridBagConstraints);
-
-        labelAlinhamento2.setText("Alinhamento");
-        panelAlinhamento2.add(labelAlinhamento2, new GridBagConstraints());
-
-        labelNAlinhamento2.setText("2");
-        panelAlinhamento2.add(labelNAlinhamento2, new GridBagConstraints());
-
-        jPanel2.add(panelAlinhamento2);
-
-        panelAlinhamento3.setLayout(new GridBagLayout());
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        panelAlinhamento3.add(SliderAlinhamento3, gridBagConstraints);
-
-        labelAlinhamento3.setText("Alinhamento");
-        panelAlinhamento3.add(labelAlinhamento3, new GridBagConstraints());
-
-        labelNAlinhamento3.setText("2");
-        panelAlinhamento3.add(labelNAlinhamento3, new GridBagConstraints());
-
-        jPanel2.add(panelAlinhamento3);
+        jPanel2.add(panelSeguirLider);
 
         getContentPane().add(jPanel2, BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sliderCoesaoStateChanged(ChangeEvent evt) {//GEN-FIRST:event_sliderCoesaoStateChanged
+        // TODO add your handling code here:
+        Boid.coesaoPeso = sliderCoesao.getValue()/100.0;
+        labelNCoesao.setText("" + (sliderCoesao.getValue()/100.0)); 
+        
+    }//GEN-LAST:event_sliderCoesaoStateChanged
+
+    private void sliderSeparacaoStateChanged(ChangeEvent evt) {//GEN-FIRST:event_sliderSeparacaoStateChanged
+        // TODO add your handling code here:
+        Boid.separacaoPeso = sliderSeparacao.getValue()/100.0;
+        labelNSeparacao.setText("" + (sliderSeparacao.getValue()/100.0)); 
+    }//GEN-LAST:event_sliderSeparacaoStateChanged
+
+    private void sliderAlinhamentoStateChanged(ChangeEvent evt) {//GEN-FIRST:event_sliderAlinhamentoStateChanged
+        // TODO add your handling code here:
+        Boid.alinhamentoPeso = sliderAlinhamento.getValue()/100.0;
+        labelNAlinhamento.setText("" + (sliderAlinhamento.getValue()/100.0)); 
+    }//GEN-LAST:event_sliderAlinhamentoStateChanged
+
+    private void sliderSeguirLiderStateChanged(ChangeEvent evt) {//GEN-FIRST:event_sliderSeguirLiderStateChanged
+        // TODO add your handling code here:
+        Boid.seguirLiderPeso = sliderSeguirLider.getValue()/100.0;
+        labelNSeguirLider.setText("" + (sliderSeguirLider.getValue()/100.0)); 
+    }//GEN-LAST:event_sliderSeguirLiderStateChanged
 
     /**
      * @param args the command line arguments
@@ -185,22 +249,22 @@ public class TelaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JSlider SliderAlinhamento;
-    private JSlider SliderAlinhamento1;
-    private JSlider SliderAlinhamento2;
-    private JSlider SliderAlinhamento3;
     private JPanel jPanel2;
     private JLabel labelAlinhamento;
-    private JLabel labelAlinhamento1;
-    private JLabel labelAlinhamento2;
-    private JLabel labelAlinhamento3;
+    private JLabel labelCoesao;
     private JLabel labelNAlinhamento;
-    private JLabel labelNAlinhamento1;
-    private JLabel labelNAlinhamento2;
-    private JLabel labelNAlinhamento3;
+    private JLabel labelNCoesao;
+    private JLabel labelNSeguirLider;
+    private JLabel labelNSeparacao;
+    private JLabel labelSeguirLider;
+    private JLabel labelSeparacao;
     private JPanel panelAlinhamento;
-    private JPanel panelAlinhamento1;
-    private JPanel panelAlinhamento2;
-    private JPanel panelAlinhamento3;
+    private JPanel panelCoesao;
+    private JPanel panelSeguirLider;
+    private JPanel panelSeparacao;
+    private JSlider sliderAlinhamento;
+    private JSlider sliderCoesao;
+    private JSlider sliderSeguirLider;
+    private JSlider sliderSeparacao;
     // End of variables declaration//GEN-END:variables
 }

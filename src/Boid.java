@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Random;
 
 public class Boid {
-
+    public static double coesaoPeso;
+    public static double alinhamentoPeso;
+    public static double separacaoPeso;
+    public static double seguirLiderPeso;
     static final Random RANDOM = new Random();
     static final int TAMANHO = 6;
     static final Path2D FORMA_DO_BOID = new Path2D.Double();
@@ -77,12 +80,12 @@ public class Boid {
         
         Vetor rule4 = seguirLider();
         //pesos - 0 5
-        rule1.multiplicar(2.5);
-        rule2.multiplicar(1.5);
-        rule3.multiplicar(1.3);
+        rule1.multiplicar(separacaoPeso);//2.5
+        rule2.multiplicar(alinhamentoPeso);//1.5
+        rule3.multiplicar(coesaoPeso);//1.3
         
         //-10 a 30 maybe
-        rule4.multiplicar(1);
+        rule4.multiplicar(seguirLiderPeso);
 
         aplicarForça(rule1);
         aplicarForça(rule2);
