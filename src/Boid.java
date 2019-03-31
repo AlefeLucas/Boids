@@ -79,18 +79,16 @@ public class Boid {
         Vetor rule3 = coesao(boids);
         
         Vetor rule4 = seguirLider();
-        //pesos - 0 5
+  
         rule1.multiplicar(separacaoPeso);//2.5
         rule2.multiplicar(alinhamentoPeso);//1.5
         rule3.multiplicar(coesaoPeso);//1.3
         
-        //-10 a 30 maybe
         rule4.multiplicar(seguirLiderPeso);
 
         aplicarForça(rule1);
         aplicarForça(rule2);
         aplicarForça(rule3);
-
         aplicarForça(rule4);
 
     }
@@ -165,7 +163,9 @@ public class Boid {
         }
     }
 
-    //nao compreendi exatamente
+    /**
+     * Faz os boids seguirem a mesma direção
+     */
     Vetor alinhamento(List<Boid> boids) {
         double preferredDist = TAMANHO * (50 / 3);
 
