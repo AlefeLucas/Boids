@@ -76,14 +76,12 @@ public class Boid {
 
         Vetor rule1 = separacao(boids); //para que eles não andem um em cima do outro
         Vetor rule2 = alinhamento(boids);
-        Vetor rule3 = coesao(boids);
-        
+        Vetor rule3 = coesao(boids);        
         Vetor rule4 = seguirLider();
   
         rule1.multiplicar(separacaoPeso);//2.5
         rule2.multiplicar(alinhamentoPeso);//1.5
-        rule3.multiplicar(coesaoPeso);//1.3
-        
+        rule3.multiplicar(coesaoPeso);//1.3        
         rule4.multiplicar(seguirLiderPeso);
 
         aplicarForça(rule1);

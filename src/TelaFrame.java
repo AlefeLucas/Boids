@@ -101,6 +101,7 @@ public class TelaFrame extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBackground(new Color(0, 0, 0));
+        setForeground(Color.black);
         setPreferredSize(new Dimension(800, 600));
 
         jPanel2.setPreferredSize(new Dimension(606, 50));
