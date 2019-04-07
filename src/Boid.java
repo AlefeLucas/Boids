@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Boid {
+    
     public static double coesaoPeso;
     public static double alinhamentoPeso;
     public static double separacaoPeso;
@@ -29,10 +30,9 @@ public class Boid {
     }
 
     double forçaMaxima, velocidadeMaxima;
-    Vetor localizaçao;
     BoidLider lider;
 
-    Vetor velocidade, aceleraçao;
+    Vetor localizaçao, velocidade, aceleraçao;
     private boolean avistado = true;
 
     Boid(double x, double y) {
@@ -76,7 +76,8 @@ public class Boid {
 
         Vetor rule1 = separacao(boids); //para que eles não andem um em cima do outro
         Vetor rule2 = alinhamento(boids);
-        Vetor rule3 = coesao(boids);        
+        Vetor rule3 = coesao(boids);  
+        
         Vetor rule4 = seguirLider();
   
         rule1.multiplicar(separacaoPeso);//2.5
@@ -92,10 +93,8 @@ public class Boid {
     }
 
     private Vetor seguirLider() {
-        Vetor v = new Vetor(0, 0);
-        v.somar(lider.localizaçao);
-        v.subtrair(this.localizaçao);
-        v.dividir(1 / (Vetor.dist(this.localizaçao, lider.localizaçao) * 0.000001));
+        Vetor v = Vetor.subtrair(lider.localizaçao, this.localizaçao);
+        v.multiplicar(v.modulo() * 0.000001);
         return v;
     }
 
