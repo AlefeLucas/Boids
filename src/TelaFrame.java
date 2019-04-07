@@ -36,7 +36,7 @@ public class TelaFrame extends JFrame {
     public TelaFrame() {
         
         
-        this.setUndecorated(true);
+        //this.setUndecorated(true);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Boids");
