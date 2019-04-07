@@ -9,7 +9,6 @@ import javax.swing.*;
 import javax.swing.Timer;
 import static java.awt.event.KeyEvent.*;
 
-
 public class BoidsPanel extends JPanel {
 
     private static Color BACKGROUND_COLOR = Color.black;
@@ -41,7 +40,33 @@ public class BoidsPanel extends JPanel {
                 requestFocus();
             }
         });
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                switch (e.getButton()) {
+                    case MouseEvent.BUTTON1:
+                        if (BoidsPanel.this.hasFocus()) {
+                            int x = e.getX();
+                            int y = e.getY();
+                            
+                            rebanho.add10(x, y);
+                        }
+                        break;
+                    case MouseEvent.BUTTON2:
+                        
+                        break;
+                    case MouseEvent.BUTTON3:
+                        if (BoidsPanel.this.hasFocus()) {
+                            rebanho.remove10();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
 
+        });
         this.addKeyListener(new KeyAdapter() {
 
             @Override
@@ -86,7 +111,8 @@ public class BoidsPanel extends JPanel {
                             BACKGROUND_COLOR = Color.white;
                         } else {
                             BACKGROUND_COLOR = Color.black;
-                        }   setBackground(BACKGROUND_COLOR);
+                        }
+                        setBackground(BACKGROUND_COLOR);
                         break;
                     case VK_V:
                         switch (camera) {
@@ -102,7 +128,8 @@ public class BoidsPanel extends JPanel {
                             case MEIO_REBANHO_LIDER:
                                 camera = Camera.REBANHO;
                                 break;
-                        }   break;
+                        }
+                        break;
                     default:
                         break;
                 }

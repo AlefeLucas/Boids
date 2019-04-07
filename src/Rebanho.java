@@ -19,6 +19,7 @@ public class Rebanho {
     private List<Vetor> rastroLider;
     private boolean drawRastro;
     private boolean drawHUD;
+    private Vetor ancora;
 
     public void setDrawRastro(boolean drawRastro) {
         this.drawRastro = drawRastro;
@@ -32,6 +33,14 @@ public class Rebanho {
         return lider;
     }
 
+    public void add10(int x, int y) {
+        for (int i = 0; i < 10 && boids.size() < MAXIMO_DE_BOIDS; i++) {
+            Boid boid = new Boid(x + ancora.x, y + ancora.y);
+            boid.setLider(this.getLider());
+            this.addBoid(boid);
+        }
+    }
+    
     public void add10() {
         for (int i = 0; i < 10 && boids.size() < MAXIMO_DE_BOIDS; i++) {
             Boid boid = new Boid(lider.localizaçao.x, lider.localizaçao.y);
@@ -63,7 +72,7 @@ public class Rebanho {
     void run(Graphics2D g, int w, int h, Camera camera) {
 
         Vetor centroide = calculaCentroide();
-        Vetor ancora = calculaAncora(camera, w, h, centroide);
+        ancora = calculaAncora(camera, w, h, centroide);
         if (drawRastro) {
             calculaRastroLider(new Vetor(lider.localizaçao.x, lider.localizaçao.y));
             calculaRastro(centroide);
